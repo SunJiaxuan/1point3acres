@@ -1,6 +1,6 @@
 from mongoengine import *
 
-connect('tumblelog')
+connect('testDocument')
 
 class UserProfile(Document):
     leave_time=StringField()

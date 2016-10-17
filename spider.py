@@ -106,7 +106,7 @@ class DataSpider():
             print "error url",self.url
 
     def storeData(self):
-        profile=(
+        profile=UserProfile(
             leave_time=self.leave_time,
             wanna_diploma=self.wanna_diploma,
             result=self.result,
@@ -123,3 +123,4 @@ class DataSpider():
             something=self.something,
             Source=self.url
         )
+        profile.save()
