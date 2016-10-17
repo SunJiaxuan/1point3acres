@@ -4,12 +4,14 @@ import gevent
 import requests
 from bs4 import BeautifulSoup
 from spider import DataSpider
+from db import UserProfile
 
 def fetchProfile(url):
     dat=DataSpider(url)
     dat.sendRequest()
 
 def main():
+    UserProfile.drop_collection()
     baseurl="http://www.1point3acres.com/bbs/forum.php?mod=forumdisplay&fid=82&sortid=164&%1=&sortid=164&page="
 
     for i in range(1,938):

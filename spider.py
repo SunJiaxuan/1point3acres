@@ -102,7 +102,7 @@ class DataSpider():
                 if i==":":
                     start=True
             self.storeData()
-        except AttributeError:
+        except:
             print "error url",self.url
 
     def storeData(self):
