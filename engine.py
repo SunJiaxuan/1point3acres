@@ -1,12 +1,26 @@
+import gevent.monkey
+gevent.monkey.patch_all()
+import gevent
 import requests
 from bs4 import BeautifulSoup
+from spider import DataSpider
+
+def fetchProfile(url):
+    dat=DataSpider(url)
+    dat.sendRequest()
 
 def main():
-    baseurl="http://www.1point3acres.com/bbs/forum.php?mod=forumdisplay&fid=82&sortid=164&%1=&sortid=164&page=2"
-    r=requests.get(baseurl)
-    soup=BeautifulSoup(r.text)
-    content=soup.find_all("div",class_="bm_c")
-    the_url_list=content.find_all("a")
-    url_list=set
-    for url in the_url_list:
-        if ""
+    baseurl="http://www.1point3acres.com/bbs/forum.php?mod=forumdisplay&fid=82&sortid=164&%1=&sortid=164&page="
+
+    for i in range(1,938):
+        r=requests.get(baseurl+str(i))
+        soup=BeautifulSoup(r.text)
+        url_list=soup.find_all("a",class_="s xst")
+        greenlets=[]
+        for url in url_list:
+            greenlets.append(gevent.spawn(fetchProfile(url.attrs['href'])))
+        gevent.joinall(greenlets)
+        print "done,{}/{}".format(i,938)
+
+if __name__=="__main__":
+    main()
