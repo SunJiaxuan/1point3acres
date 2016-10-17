@@ -111,7 +111,7 @@ class DataSpider():
             wanna_diploma=self.wanna_diploma,
             result=self.result,
             wanna_subject=self.wanna_subject,
-            wanna_university=self.wanna_university
+            wanna_university=self.wanna_university,
             undergraduate_subject=self.undergraduate_subject,
             undergraduate_university=self.undergraduate_university,
             undergraduate_GPA=self.undergraduate_GPA,

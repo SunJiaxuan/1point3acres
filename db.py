@@ -1,6 +1,6 @@
 from mongoengine import *
 
-connect('testDocument')
+connect('1point3acres')
 
 class UserProfile(Document):
     leave_time=StringField()
