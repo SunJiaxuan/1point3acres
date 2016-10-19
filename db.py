@@ -18,3 +18,6 @@ class UserProfile(Document):
     GRE=StringField()
     something=StringField()
     Source=StringField()
+
+class Comment(Document):
+    comment=StringField()

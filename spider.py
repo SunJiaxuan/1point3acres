@@ -1,6 +1,27 @@
 import requests
 from bs4 import BeautifulSoup
-from db import UserProfile
+from db import UserProfile,Comment
+
+class CommentSpider():
+    def __init__(self,url):
+        self.url=url
+        self.Header={
+            "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/601.7.7 (KHTML, like Gecko) Version/9.1.2 Safari/601.7.7"
+        }
+    def sendRequest(self):
+        resp=requests.get(self.url,headers=self.Header)
+        soup=BeautifulSoup(resp.text)
+        res=""
+        try:
+            for i in soup.find_all("td",class_="t_f"):
+                res+=i.text
+            self.storeData(res)
+        except:
+            print "error: ",self.url
+
+    def storeData(self,res):
+        comment=Comment(comment=res)
+        comment.save()
 
 
 class DataSpider():
